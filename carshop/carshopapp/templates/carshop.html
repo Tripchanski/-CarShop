@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'carshopapp/css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car shop</title>
+</head>
+<body>
+    <div>
+
+
+        <div class = "product div_hover">
+            
+            <h1 class = 'title_product'>{{ product.title }}</h1>
+            <hr>
+            <div class = "description_product">
+                
+
+                <div class = "img_product">
+                    <img src="{{ product.image.url }}" alt="">
+                </div>
+                <p>Колір: {{ product.color}}</p>
+                <p>Потужність: {{ product.power}} к.с.</p>
+                <p>Ціна: {{ product.price}}$</p>
+                <p>Максимальна швидкість: {{ product.max_speed}}км/год</p>
+                <p>Росхід топлива: {{ product.fuel_consumption}}л/100км</p>
+                <p>Швидкість разгону: {{ product.overclocking}}с</p>
+            </div>           
+            
+
+        </div>
+
+
+        <div class = "description div_hover">
+
+            <h1>Коментарі</h1>
+            <hr>
+            
+            {% for description in descriptions %}
+                <h2>{{ description.author }}:</h2>
+                <p>{{ description.description }}</p>
+                <hr>
+            {% endfor %}
+
+        </div>
+
+
+        <div class = "add_description div_hover">
+            
+            <form method="post" enctype="multipart/form-data">
+                
+                {% csrf_token %}
+        
+                <h2>Додати коментар</h3>
+                <hr>
+            
+                <p><textarea name="description" cols="190" rows="10" placeholder="Коментар" required style="resize: none;"></textarea></p>
+                <p class="create"><input type="submit" value="Створити"></p>
+            
+            </form>
+            
+        </div>
+     
+        
+    </div>
+</body>
+</html>
+
